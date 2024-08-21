@@ -1,0 +1,208 @@
+/* Styles for the label of the location input */
+label[for="locationInput"] {
+  display: block;
+  margin-bottom: 8px;
+  margin-left: 70px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styles for the location input field itself */
+#locationInput {
+  width: 130%; /* Full width of its container */
+  padding: 10px 15px; /* Padding inside the input */
+  margin-bottom: 10px; /* Space below the input */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
+  font-size: 14px; /* Slightly larger font size for readability */
+  color: #666; /* Dark grey color for input text */
+}
+
+/* Adding focus style to enhance usability */
+#locationInput:focus {
+  border-color: #0066cc; /* Highlight border on focus */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Styles for the alert div (assuming you might want to style this too) */
+.alert {
+  color: red;
+  font-size: 14px; /* Increase font size */
+  margin-top: 5px;
+}
+
+/* Styles for the label of the pick-up date input */
+label[for="pickUpDateInput"] {
+  display: block;
+  margin-bottom: 8px;
+  margin-left: 50px;
+  margin-right: 300px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styles for the pick-up date input field itself */
+#pickUpDateInput {
+  width: 190px; /* Full width of its container */
+  padding: 10px 15px; /* Padding inside the input */
+  margin-bottom: 10px; /* Space below the input */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
+  font-size: 14px; /* Slightly larger font size for readability */
+  color: #666; /* Dark grey color for input text */
+}
+
+/* Adding focus style to enhance usability */
+#pickUpDateInput:focus {
+  border-color: #0066cc; /* Highlight border on focus */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
+  outline: none; /* Remove default focus outline */
+}
+/* Styles for the label of the pick-up time input */
+label[for="pickUpTimeInput"] {
+  display: block;
+  margin-top: -94px;
+  margin-bottom: 8px;
+  margin-left: 296px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styles for the pick-up time input field itself */
+#pickUpTimeInput {
+  width: 190px; /* Full width of its container */
+  padding: 10px 15px; /* Padding inside the input */
+  margin-bottom: 10px;
+  margin-left:250px;
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
+  font-size: 14px; /* Slightly larger font size for readability */
+  color: #666; /* Dark grey color for input text */
+}
+
+/* Adding focus style to enhance usability */
+#pickUpTimeInput:focus {
+  border-color: #0066cc; /* Highlight border on focus */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
+  outline: none; /* Remove default focus outline */
+}
+/* Styles for the label of the drop-off date input */
+label[for="dropOffDateInput"] {
+  display: block;
+  margin-top: -15px;
+  margin-bottom: 8px;
+  margin-left: 90px;
+  margin-right: 350px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styles for the drop-off date input field itself */
+#dropOffDateInput {
+  width: 190px;
+  margin-left: 50px;/* Full width of its container */
+  padding: 10px 15px; /* Padding inside the input */
+  margin-bottom: 50px; /* Space below the input */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
+  font-size: 14px; /* Slightly larger font size for readability */
+  color: #666; /* Dark grey color for input text */
+}
+
+/* Adding focus style to enhance usability */
+#dropOffDateInput:focus {
+  border-color: #0066cc; /* Highlight border on focus */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
+  outline: none; /* Remove default focus outline */
+}
+/* Styles for the label of the drop-off time input */
+label[for="dropOffTimeInput"] {
+  display: block;
+  margin-top: -130px;
+  margin-bottom: 8px;
+  margin-left: 293px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styles for the drop-off time input field itself */
+#dropOffTimeInput {
+  width: 190px; /* Full width of its container */
+  padding: 10px 15px;
+  margin-top: -4px; /* Padding inside the input */
+  margin-bottom: 60px;
+  margin-left: 250px; /* Space below the input */
+  border: 1px solid #ccc; /* Subtle border */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
+  font-size: 14px; /* Slightly larger font size for readability */
+  color: #666; /* Dark grey color for input text */
+}
+
+/* Adding focus style to enhance usability */
+#dropOffTimeInput:focus {
+  border-color: #0066cc; /* Highlight border on focus */
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
+  outline: none; /* Remove default focus outline */
+}
+
+
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  padding: 20px;
+  border: 2px solid #FFD700; /* Change border color */
+  border-radius: 10px; /* Increase border radius */
+  background-color: #FFF8DC; /* Change background color */
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5); /* Add box shadow */
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px; /* Increase margin */
+}
+
+.input-container input {
+  width: 100%;
+  max-width: 300px;
+  padding: 12px; /* Increase padding */
+  border: 2px solid #FFD700; /* Change border color */
+  border-radius: 8px; /* Increase border radius */
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+
+.search-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 0; /* Adjust margin */
+  cursor: pointer;
+  border-radius: 8px;
+  margin-top: -50px;
+}
+
+.search-btn:hover {
+  background-color: #45a049;
+}

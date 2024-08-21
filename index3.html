@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        /* Your CSS styles for the search results page */
+        /* Example style */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+
+        .search-results {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-results h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .search-results p {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-results">
+        <h2>Search Results</h2>
+        <p>Pick-up Location: <span id="pickUpLocation"></span></p>
+        <p>Pick-up Date: <span id="pickUpDate"></span></p>
+        <p>Pick-up Time: <span id="pickUpTime"></span></p>
+        <p>Drop-off Date: <span id="dropOffDate"></span></p>
+        <p>Drop-off Time: <span id="dropOffTime"></span></p>
+    </div>
+
+    <script>
+        // Retrieve search parameters from session storage
+        var pickUpLocation = sessionStorage.getItem('location');
+        var pickUpDate = sessionStorage.getItem('pickUpDate');
+        var pickUpTime = sessionStorage.getItem('pickUpTime');
+        var dropOffDate = sessionStorage.getItem('dropOffDate');
+        var dropOffTime = sessionStorage.getItem('dropOffTime');
+
+        // Update HTML content with search parameters
+        document.getElementById('pickUpLocation').textContent = pickUpLocation;
+        document.getElementById('pickUpDate').textContent = pickUpDate;
+        document.getElementById('pickUpTime').textContent = pickUpTime;
+        document.getElementById('dropOffDate').textContent = dropOffDate;
+        document.getElementById('dropOffTime').textContent = dropOffTime;
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+<link rel="stylesheet" href="styles.css">
+<style>
+    .alert {
+        color: rgb(255, 0, 0);
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    .redirect {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+</style>
+</head>
+<body>
+    <div class="redirect">
+        <div class="search-box">
+            <!-- Location input with label -->
+            <div class="input-container">
+                <label for="locationInput">Pick-up Location:</label>
+                <input type="text" id="locationInput" placeholder="&#128269; Kathmandu">
+                <div id="locationAlert" class="alert"></div>
+            </div>
+            
+            <!-- Pick-up date input with label -->
+            <div class="input-container">
+                <label for="pickUpDateInput">Pick-up Date:</label>
+                <input type="date" id="pickUpDateInput" placeholder="Pick-up date">
+                <div id="pickUpDateAlert" class="alert"></div>
+            </div>
+            
+            <!-- Pick-up time input with label -->
+            <div class="input-container">
+                <label for="pickUpTimeInput">Pick-up Time:</label>
+                <input type="time" id="pickUpTimeInput" placeholder="Pick-up time">
+                <div id="pickUpTimeAlert" class="alert"></div>
+            </div>
+            
+            <!-- Drop-off date input with label -->
+            <div class="input-container">
+                <label for="dropOffDateInput">Drop-off Date:</label>
+                <input type="date" id="dropOffDateInput" placeholder="Drop-off date (at least 24 hours from pickup)">
+                <div id="dropOffDateAlert" class="alert"></div>
+            </div>
+            
+            <!-- Drop-off time input with label -->
+            <div class="input-container">
+                <label for="dropOffTimeInput">Drop-off Time:</label>
+                <input type="time" id="dropOffTimeInput" placeholder="Drop-off time">
+                <div id="dropOffTimeAlert" class="alert"></div>
+            </div>
+            
+            <!-- Search button -->
+            <button id="search-btn" onclick="storeSearchParameters()">Search</button>
+        </div>
+    </div>
+    <script>
+        function storeSearchParameters() {
+            var location = document.getElementById('locationInput').value.trim().toLowerCase();
+            var pickUpDate = document.getElementById('pickUpDateInput').value;
+            var pickUpTime = document.getElementById('pickUpTimeInput').value;
+            var dropOffDate = document.getElementById('dropOffDateInput').value;
+            var dropOffTime = document.getElementById('dropOffTimeInput').value;
+    
+            var locationAlert = document.getElementById('locationAlert');
+            var pickUpDateAlert = document.getElementById('pickUpDateAlert');
+            var pickUpTimeAlert = document.getElementById('pickUpTimeAlert');
+            var dropOffDateAlert = document.getElementById('dropOffDateAlert');
+            var dropOffTimeAlert = document.getElementById('dropOffTimeAlert');
+    
+            locationAlert.innerHTML = '';
+            pickUpDateAlert.innerHTML = '';
+            pickUpTimeAlert.innerHTML = '';
+            dropOffDateAlert.innerHTML = '';
+            dropOffTimeAlert.innerHTML = '';
+    
+            if (location !== 'kathmandu') {
+                locationAlert.innerHTML = 'Location must be Kathmandu';
+                return;
+            }
+    
+            if (!pickUpDate || !dropOffDate) {
+                if (!pickUpDate) {
+                    pickUpDateAlert.innerHTML = 'Please select pick-up date';
+                }
+                if (!dropOffDate) {
+                    dropOffDateAlert.innerHTML = 'Please select drop-off date';
+                }
+                return;
+            }
+    
+            if (!pickUpTime) {
+                pickUpTimeAlert.innerHTML = 'Please select pick-up time';
+                return;
+            }
+    
+            if (!dropOffTime) {
+                dropOffTimeAlert.innerHTML = 'Please select drop-off time';
+                return;
+            }
+    
+            var currentDate = new Date();
+            var pickUpDateTime = new Date(pickUpDate + 'T' + pickUpTime);
+            var dropOffDateTime = new Date(dropOffDate + 'T' + dropOffTime);
+    
+            if (pickUpDateTime < currentDate) {
+                pickUpDateAlert.innerHTML = 'Pick-up date must be after the current date';
+                return;
+            }
+    
+            if (dropOffDateTime < pickUpDateTime || dropOffDateTime - pickUpDateTime < 86400000) {
+                dropOffDateAlert.innerHTML = 'Drop-off date must be at least 24 hours after the pick-up date';
+                return;
+            }
+    
+            // Store search parameters in session storage
+            sessionStorage.setItem('location', location);
+            sessionStorage.setItem('pickUpDate', pickUpDate);
+            sessionStorage.setItem('pickUpTime', pickUpTime);
+            sessionStorage.setItem('dropOffDate', dropOffDate);
+            sessionStorage.setItem('dropOffTime', dropOffTime);
+    
+            // Redirect to search results page
+            window.location.href = 'index3.html';
+        }
+    </script>
+    
