@@ -1,161 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rentals</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .search-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .input-container {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 10px;
-        }
-
-        .input-container input {
-            width: 100%;
-            max-width: 300px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            margin-bottom: 5px;
-        }
-
-        .input-container .alert {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .alert {
-            display: block;
-        }
-
-
-
-        button {
-            background-color: #007bff;
-            color: white;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map with Leaflet</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    #map {
+      height: 400px;
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <!-- Header content here -->
-    </header>
-    <main>
-        <div class="search-container">
-            <div class="search-box">
-                <div class="input-container">
-                    <input type="text" id="locationInput" placeholder="Enter Kathmandu as location">
-                    <div id="locationAlert" class="alert"></div>
-                </div>
-                <div class="input-container">
-                    <input type="date" id="pickUpDateInput" placeholder="Pick-up date">
-                    <div id="pickUpDateAlert" class="alert"></div>
-                </div>
-                <div class="input-container">
-                    <input type="time" id="pickUpTimeInput" placeholder="Pick-up time">
-                </div>
-                <div class="input-container">
-                    <input type="date" id="dropOffDateInput" placeholder="Drop-off date (at least 24 hours from pickup)">
-                    <div id="dropOffDateAlert" class="alert"></div>
-                </div>
-                <div class="input-container">
-                    <input type="time" id="dropOffTimeInput" placeholder="Drop-off time">
-                </div>
-                <button onclick="storeSearchParameters()">Search</button>
-            </div>
-            
-            
-            
-        </div>
-    </main>
-    <script>
-        function storeSearchParameters() {
-            var location = document.getElementById('locationInput').value.trim().toLowerCase();
-            var pickUpDate = document.getElementById('pickUpDateInput').value;
-            var pickUpTime = document.getElementById('pickUpTimeInput').value;
-            var dropOffDate = document.getElementById('dropOffDateInput').value;
-            var dropOffTime = document.getElementById('dropOffTimeInput').value;
+  <div id="map"></div>
+  <input type="text" id="locationInput" placeholder="Enter a location">
+  <button onclick="findLocation()">Find Location</button>
 
-            var locationAlert = document.getElementById('locationAlert');
-            var pickUpDateAlert = document.getElementById('pickUpDateAlert');
-            var dropOffDateAlert = document.getElementById('dropOffDateAlert');
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var map = L.map('map').setView([51.505, -0.09], 13); // Initial map center and zoom level
 
-            locationAlert.innerHTML = '';
-            pickUpDateAlert.innerHTML = '';
-            dropOffDateAlert.innerHTML = '';
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
-            if (location !== 'kathmandu') {
-                locationAlert.innerHTML = 'Location must be Kathmandu';
-                return;
-            }
+    var marker = L.marker([51.505, -0.09]).addTo(map); // Initial marker position
 
-            if (!pickUpDate || !pickUpTime || !dropOffDate || !dropOffTime) {
-                if (!pickUpDate || !dropOffDate) {
-                    pickUpDateAlert.innerHTML = 'Please select pick-up and drop-off dates';
-                }
-                if (!pickUpTime) {
-                    pickUpDateAlert.innerHTML += '<br>Please select pick-up time';
-                }
-                if (!dropOffTime) {
-                    dropOffDateAlert.innerHTML = 'Please select drop-off time';
-                }
-                return;
-            }
+    function onMapClick(e) {
+      marker.setLatLng(e.latlng);
+      updateLocationInput(e.latlng.lat, e.latlng.lng);
+    }
 
-            var currentDate = new Date();
-            var pickUpDateTime = new Date(pickUpDate + 'T' + pickUpTime);
-            var dropOffDateTime = new Date(dropOffDate + 'T' + dropOffTime);
+    map.on('click', onMapClick);
 
-            if (pickUpDateTime < currentDate) {
-                pickUpDateAlert.innerHTML = 'Pick-up date must be after the current date';
-                return;
-            }
-
-            if (dropOffDateTime < pickUpDateTime || dropOffDateTime - pickUpDateTime < 86400000) {
-                dropOffDateAlert.innerHTML = 'Drop-off date must be at least 24 hours after the pick-up date';
-                return;
-            }
-
-            // Store search parameters in session storage
-            sessionStorage.setItem('location', location);
-            sessionStorage.setItem('pickUpDate', pickUpDate);
-            sessionStorage.setItem('pickUpTime', pickUpTime);
-            sessionStorage.setItem('dropOffDate', dropOffDate);
-            sessionStorage.setItem('dropOffTime', dropOffTime);
-
-            // Redirect to search results page
-            window.location.href = 'index2.html';
+    function updateLocationInput(lat, lng) {
+      axios.get('https://nominatim.openstreetmap.org/reverse', {
+        params: {
+          format: 'jsonv2',
+          lat: lat,
+          lon: lng
         }
+      })
+      .then(function (response) {
+        document.getElementById('locationInput').value = response.data.display_name;
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
 
-    </script>
+    function findLocation() {
+      var locationString = document.getElementById('locationInput').value;
+      axios.get('https://nominatim.openstreetmap.org/search', {
+        params: {
+          format: 'jsonv2',
+          q: locationString
+        }
+      })
+      .then(function (response) {
+        if (response.data.length > 0) {
+          var lat = parseFloat(response.data[0].lat);
+          var lon = parseFloat(response.data[0].lon);
+          if (!isNaN(lat) && !isNaN(lon)) {
+            var latlng = L.latLng(lat, lon);
+            marker.setLatLng(latlng);
+            map.setView(latlng);
+          } else {
+            alert("Location not found.");
+          }
+        } else {
+          alert("Location not found.");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          var latlng = L.latLng(position.coords.latitude, position.coords.longitude);
+          marker.setLatLng(latlng);
+          map.setView(latlng);
+          updateLocationInput(position.coords.latitude, position.coords.longitude);
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+  </script>
+
+  <button onclick="getLocation()">Use Current Location</button>
+
 </body>
 </html>

@@ -1,208 +1,121 @@
-/* Styles for the label of the location input */
-label[for="locationInput"] {
-  display: block;
-  margin-bottom: 8px;
-  margin-left: 70px;
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    height: 100vh; /* Set the height of the body to 100% of the viewport height */
+    /* background-image: url('image1.jpeg'), url('image2.jpg'), url('image3.jpeg');  */
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background images */
+    background-repeat: no-repeat; /* Do not repeat the background images */
+        }
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
 }
 
-/* Styles for the location input field itself */
-#locationInput {
-  width: 130%; /* Full width of its container */
-  padding: 10px 15px; /* Padding inside the input */
-  margin-bottom: 10px; /* Space below the input */
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
-  font-size: 14px; /* Slightly larger font size for readability */
-  color: #666; /* Dark grey color for input text */
+h1, h2 {
+    margin: 0;
 }
 
-/* Adding focus style to enhance usability */
-#locationInput:focus {
-  border-color: #0066cc; /* Highlight border on focus */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
-  outline: none; /* Remove default focus outline */
+/* Button container */
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Add gap between buttons */
 }
 
-/* Styles for the alert div (assuming you might want to style this too) */
-.alert {
-  color: red;
-  font-size: 14px; /* Increase font size */
-  margin-top: 5px;
-}
-
-/* Styles for the label of the pick-up date input */
-label[for="pickUpDateInput"] {
-  display: block;
-  margin-bottom: 8px;
-  margin-left: 50px;
-  margin-right: 300px;
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Styles for the pick-up date input field itself */
-#pickUpDateInput {
-  width: 190px; /* Full width of its container */
-  padding: 10px 15px; /* Padding inside the input */
-  margin-bottom: 10px; /* Space below the input */
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
-  font-size: 14px; /* Slightly larger font size for readability */
-  color: #666; /* Dark grey color for input text */
-}
-
-/* Adding focus style to enhance usability */
-#pickUpDateInput:focus {
-  border-color: #0066cc; /* Highlight border on focus */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
-  outline: none; /* Remove default focus outline */
-}
-/* Styles for the label of the pick-up time input */
-label[for="pickUpTimeInput"] {
-  display: block;
-  margin-top: -94px;
-  margin-bottom: 8px;
-  margin-left: 296px;
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Styles for the pick-up time input field itself */
-#pickUpTimeInput {
-  width: 190px; /* Full width of its container */
-  padding: 10px 15px; /* Padding inside the input */
-  margin-bottom: 10px;
-  margin-left:250px;
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
-  font-size: 14px; /* Slightly larger font size for readability */
-  color: #666; /* Dark grey color for input text */
-}
-
-/* Adding focus style to enhance usability */
-#pickUpTimeInput:focus {
-  border-color: #0066cc; /* Highlight border on focus */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
-  outline: none; /* Remove default focus outline */
-}
-/* Styles for the label of the drop-off date input */
-label[for="dropOffDateInput"] {
-  display: block;
-  margin-top: -15px;
-  margin-bottom: 8px;
-  margin-left: 90px;
-  margin-right: 350px;
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Styles for the drop-off date input field itself */
-#dropOffDateInput {
-  width: 190px;
-  margin-left: 50px;/* Full width of its container */
-  padding: 10px 15px; /* Padding inside the input */
-  margin-bottom: 50px; /* Space below the input */
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
-  font-size: 14px; /* Slightly larger font size for readability */
-  color: #666; /* Dark grey color for input text */
-}
-
-/* Adding focus style to enhance usability */
-#dropOffDateInput:focus {
-  border-color: #0066cc; /* Highlight border on focus */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
-  outline: none; /* Remove default focus outline */
-}
-/* Styles for the label of the drop-off time input */
-label[for="dropOffTimeInput"] {
-  display: block;
-  margin-top: -130px;
-  margin-bottom: 8px;
-  margin-left: 293px;
-  font-size: 16px;
-  color: #333;
-  font-weight: bold;
-}
-
-/* Styles for the drop-off time input field itself */
-#dropOffTimeInput {
-  width: 190px; /* Full width of its container */
-  padding: 10px 15px;
-  margin-top: -4px; /* Padding inside the input */
-  margin-bottom: 60px;
-  margin-left: 250px; /* Space below the input */
-  border: 1px solid #ccc; /* Subtle border */
-  border-radius: 5px; /* Rounded corners */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Slight inner shadow for depth */
-  font-size: 14px; /* Slightly larger font size for readability */
-  color: #666; /* Dark grey color for input text */
-}
-
-/* Adding focus style to enhance usability */
-#dropOffTimeInput:focus {
-  border-color: #0066cc; /* Highlight border on focus */
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2), 0 0 5px rgba(0,102,204,0.5); /* More pronounced shadow on focus */
-  outline: none; /* Remove default focus outline */
+/* Role selection buttons */
+.role-button {
+    width: 512px; /* Increase button width */
+    height: 480px; /* Increase button height */
+    background-size: cover;
+    border: none;
+    cursor: pointer;
+    transition: background-image 0.3s;
+    margin: 10px; /* Add margin around buttons */
 }
 
 
-
-.search-box {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  padding: 20px;
-  border: 2px solid #FFD700; /* Change border color */
-  border-radius: 10px; /* Increase border radius */
-  background-color: #FFF8DC; /* Change background color */
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5); /* Add box shadow */
+/* Host button default background image */
+#host-button {
+    background-image: url('car-vehicle-sell-icon.png');
 }
 
-.input-container {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px; /* Increase margin */
+/* Customer button default background image */
+#customer-button {
+    background-image: url('car-vehicle-rent-icon.png');
 }
 
-.input-container input {
-  width: 100%;
-  max-width: 300px;
-  padding: 12px; /* Increase padding */
-  border: 2px solid #FFD700; /* Change border color */
-  border-radius: 8px; /* Increase border radius */
-  box-sizing: border-box;
-  margin-bottom: 10px;
+/* Host button hover effect */
+#host-button:hover {
+    background-image: url('car-sell-icon.png'); /* Change this to the desired hover image for host button */
+}
+
+/* Customer button hover effect */
+#customer-button:hover {
+    background-image: url('car-rent-icon.png'); /* Change this to the desired hover image for customer button */
+}
+
+/* Host button active effect */
+#host-button.active {
+    background-image: url('car-sell-icon.png'); /* Change this to the desired active image for host button */
+}
+
+/* Customer button active effect */
+#customer-button.active {
+    background-image: url('car-rent-icon.png'); /* Change this to the desired active image for customer button */
 }
 
 
-.search-btn {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 10px 0; /* Adjust margin */
-  cursor: pointer;
-  border-radius: 8px;
-  margin-top: -50px;
+/* Form styles */
+form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
 }
 
-.search-btn:hover {
-  background-color: #45a049;
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+button {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+p {
+    margin-top: 10px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    form {
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    form {
+        max-width: 100%;
+    }
 }
