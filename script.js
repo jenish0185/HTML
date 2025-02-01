@@ -1,52 +1,33 @@
-// Simulated database
-let users = {};
-let cars = {};
+document.getElementById('uploadForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent default form submission
 
-function login() {
-    let email = document.getElementById("email-login").value;
-    let password = document.getElementById("password-login").value;
-    if (users[email] && users[email].password === password) {
-        if (users[email].type === "host") {
-            showHostPage();
+    // Create a new FormData object to store form data
+    var formData = new FormData();
+    
+    // Get the file input element and append the selected file to the FormData object
+    var fileInput = document.getElementById('imageFile');
+    formData.append('imageFile', fileInput.files[0]);
+
+    // Send a POST request to the upload.php endpoint with the form data
+    fetch('upload.php', {
+        method: 'POST',
+        body: formData // Set the body of the request to the FormData object
+    })
+    .then(response => response.json()) // Parse the JSON response from the server
+    .then(data => {
+        // Handle the response data
+        if (data.success) {
+            // If the upload was successful, display success message
+            document.getElementById('message').textContent = 'Image and Key successfully uploaded!';
         } else {
-            showCustomerPage();
+            // If there was an error in the upload process, display error message
+            document.getElementById('message').textContent = 'Error uploading image and key.';
         }
-    } else {
-        alert("Invalid credentials!");
-    }
-}
-
-function signup() {
-    let firstName = document.getElementById("firstname").value;
-    let lastName = document.getElementById("lastname").value;
-    let email = document.getElementById("email-signup").value;
-    let password = document.getElementById("password-signup").value;
-    let confirmPassword = document.getElementById("confirm-password").value;
-
-    if (firstName && lastName && email && password && confirmPassword) {
-        if (password === confirmPassword) {
-            // Passwords match, proceed with sign up
-            // Here you can add code to submit the form or perform further actions
-            alert("Sign up successful! Please login.");
-            // Optionally, you can redirect the user to the login page
-            window.location.href = "login.html";
-        } else {
-            alert("Passwords do not match!");
-        }
-    } else {
-        alert("Please fill in all fields.");
-    }
-}
-
-
-function showLogin() {
-    document.getElementById("signup-container").classList.add("hidden");
-    document.getElementById("login-container").classList.remove("hidden");
-}
-
-function showSignup() {
-    document.getElementById("login-container").classList.add("hidden");
-    document.getElementById("signup-container").classList.remove("hidden");
-}
-
-// Other functions (showHostPage, showCustomerPage, logout, listCar) remain the same as previous example
+    })
+    .catch(error => {
+        // Handle any errors that occur during the fetch request
+        console.error('Error:', error);
+        // Display error message
+        document.getElementById('message').textContent = 'Error uploading image and key.';
+    });
+});
